@@ -46,9 +46,22 @@ public class Servlet_lab5 extends HttpServlet {
         String nazwisko = request.getParameter("nazwisko");
         String email = request.getParameter("email");
         String id_grupy = request.getParameter("id_grupy");
-
+        int licznik = 1;
         HttpSession session = request.getSession();
 
+
+        if(session.getAttribute("licz") == null) //Sprawdzamy czy licznik w sesji, ma cokolwiek w sobie
+        {
+            ArrayList<Student> student = new ArrayList<>();     //Inicjalizacja listy
+            session.setAttribute("studenci", student); //Ustawiamy ArrayList<Student> student do sesji pod nazwa studenci
+        }
+        else // licznik w sesji coś w sobie ma
+        {
+            licznik = (int) session.getAttribute("licz");  //Wartosc licznika z sesji przypisujemy do zmiennej licznik
+            licznik++;  // powiekszamy zmienna licznik
+        }
+
+        session.setAttribute("licz", licznik); //Ustawiamy licznik w sesji na wartosc zmiennej licznik
         ArrayList<Student> zmienna;
 
         zmienna = (ArrayList<Student>) session.getAttribute("studenci");
@@ -56,6 +69,7 @@ public class Servlet_lab5 extends HttpServlet {
         zmienna.add(new Student(imie, nazwisko, email, id_grupy));
 
         session.setAttribute("studenci", zmienna);
+
         request.getRequestDispatcher("lab05.jsp").forward(request, response);
     }
 }
