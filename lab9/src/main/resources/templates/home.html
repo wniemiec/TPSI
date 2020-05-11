@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring</title>
+    <meta charset="UTF-8" />
+</head>
+
+
+<body>
+<form action="/newpost" method="POST">
+    Tytuł:
+    <label>
+    <input type="text" name="title" size="150"/>
+    </label></br>
+    Treść:
+    <label>
+    <textarea name="content" cols="150" rows="5"></textarea>
+    </label>
+    <input type="submit" value="Dodaj wpis" />
+</form>
+
+<div th:each="blogg : ${blog}">
+    <h2 th:text="${blogg.title}"></h2>
+    <p th:text="${blogg.content}"></p>
+    <a th:href="delete + ${blogg.id}">Usuń</a>
+</div>
+
+
+</body>
+</html>
