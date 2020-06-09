@@ -1,14 +1,13 @@
-package wizut.tpsi;
+package wizut.tpsi.ogloszenia;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Lab9Application {
+public class OgloszeniaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Lab9Application.class, args);
+        SpringApplication.run(OgloszeniaApplication.class, args);
     }
 
 }
-
